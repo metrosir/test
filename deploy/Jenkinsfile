@@ -1,17 +1,34 @@
 pipeline {
-    agent none
-    stage {
-            stage('build') {
-                agent {
-                    docker {
-                        image 'php'
-                    }
-                }
-                steps {
-                    sh 'php --version'
-                }
+    agent any
+    stages {
+        stage('build image') {
+            steps {
+                echo "----------------------从git仓库拉取代码阶段------------------"
+                git branch: 'main', credentialsId: '5c26cc66-ec4d-40aa-a261-58f29df53b76', url: 'git@github.com:metrosir/test.git'
+                echo "----------------------生产docker镜像------------------"
+                sh '''
+                docker login -u t1 -p Oa123!@# 192.144.178.98:443
+                '''
             }
+        }
     }
+
+
+
+//     stage {
+//             stage('build') {
+//                 agent {
+//                     docker {
+//                         image 'php'
+//                     }
+//                 }
+//                 steps {
+//                     sh 'php --version'
+//                 }
+//             }
+//     }
 }
 
 // 依次安装：docker-commons,docker-java-api,docker-build-step,docker-workflow(dockerpipline)
+// https://blog.csdn.net/superman26/article/details/120697735
+// https://www.cnblogs.com/minimeta/p/16490444.html
