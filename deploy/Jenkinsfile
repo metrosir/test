@@ -11,7 +11,9 @@ pipeline {
             steps {
                 echo "----------------------生产docker镜像------------------"
                 sh '''
-                docker login -u t1 -p Oa123!@# 192.144.178.98:443
+                docker login -u t1 -p 'Oa123!@#' 192.144.178.98:443
+                docker build -t 192.144.178.98:443/my/nginx:latest -f project/Dockerfile .
+                docker push 192.144.178.98:443/my/nginx:latest
                 '''
             }
         }
@@ -33,6 +35,6 @@ pipeline {
 //     }
 }
 
-// 依次安装：docker-commons,docker-java-api,docker-build-step,docker-workflow(dockerpipline)
-// https://blog.csdn.net/superman26/article/details/120697735
-// https://www.cnblogs.com/minimeta/p/16490444.html
+// 依次安装：docker-commons,docker-java-api,docker-build-step,docker-workflow(dockerpipline),rancher
+// [pipeline的编写] https://blog.csdn.net/superman26/article/details/120697735
+// [docker 容器部署jenkins时在在容器中又要用到docker相关的操作该怎么处理]https://www.cnblogs.com/minimeta/p/16490444.html
