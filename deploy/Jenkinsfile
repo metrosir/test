@@ -1,10 +1,17 @@
 pipeline {
-    agent { docker 'php' }
-    stages {
-        stage('build') {
-            steps {
-                sh 'php --version'
+    agent none
+    stage {
+            stage('build') {
+                agent {
+                    docker {
+                        image 'php'
+                    }
+                }
+                steps {
+                    sh 'php --version'
+                }
             }
-        }
     }
 }
+
+// 依次安装：docker-commons,docker-java-api,docker-build-step,docker-workflow(dockerpipline)
