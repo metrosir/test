@@ -6,8 +6,8 @@ podTemplate {
     }
 }
 
-{
-//     agent any
+pipeline {
+    agent any
     node("jenkins-slave"){
         stage('build image') {
             steps {
