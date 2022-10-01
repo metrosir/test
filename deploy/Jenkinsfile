@@ -6,6 +6,13 @@ podTemplate(
     ) {
     // some block
     stage("代码拉取") {
-        echo "123456"
+        git branch: 'main', credentialsId: '191d6486-9a75-4189-89df-2a1708343f8e', url: 'git@github.com:metrosir/test.git'
+    }
+    stage("docker构建镜像") {
+        sh '''
+        docker login -u t1 -p 'Oa123!@#' 192.144.178.98:443
+        docker build -t 192.144.178.98:443/my/nginx:1.0 -f project/Dockerfile .
+        docker push 192.144.178.98:443/my/nginx:1.0
+        '''
     }
 }
