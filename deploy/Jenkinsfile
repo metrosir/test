@@ -7,8 +7,8 @@ podTemplate {
 }
 
 pipeline {
-    agent any
-    stages {
+//     agent any
+    node("jenkins-slave"){
         stage('build image') {
             steps {
                 echo "----------------------从git仓库拉取代码阶段------------------"
@@ -29,11 +29,16 @@ pipeline {
             steps {
                 echo "----------------------kubernetesDeploy------------------"
                 kubernetesDeploy configs: 'deploy/deploy.yaml'
+                kubeconfig(credentialsId: '819c6052-037c-4f44-ae98-f3c666eafab2', serverUrl: 'https://10.0.16.9:6443') {
+                    // some block
+                }
             }
             steps {
                 echo "Testing..."
             }
         }
+    }
+//     stages {
 }
 
 
