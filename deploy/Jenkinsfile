@@ -7,36 +7,40 @@ podTemplate {
 }
 
 pipeline {
-    agent any
-    node("jenkins-slave"){
-        stage('build image') {
-            steps {
-                echo "----------------------从git仓库拉取代码阶段------------------"
-                git branch: 'main', credentialsId: '5c26cc66-ec4d-40aa-a261-58f29df53b76', url: 'git@github.com:metrosir/test.git'
-            }
-        }
-        stage('Docker Builder') {
-            steps {
-                echo "----------------------生产docker镜像------------------"
-                sh '''
-                docker login -u t1 -p 'Oa123!@#' 192.144.178.98:443
-                docker build -t 192.144.178.98:443/my/nginx:latest -f project/Dockerfile .
-                docker push 192.144.178.98:443/my/nginx:latest
-                '''
-            }
-        }
-        stage('Deploy to K8S'){
-            steps {
-                echo "----------------------kubernetesDeploy------------------"
-                kubernetesDeploy configs: 'deploy/deploy.yaml'
-                kubeconfig(credentialsId: '819c6052-037c-4f44-ae98-f3c666eafab2', serverUrl: 'https://10.0.16.9:6443') {
-                    // some block
-                }
-            }
-            steps {
-                echo "Testing..."
-            }
-        }
+  agent {
+    kubernetes {
+        yamlFile 'deploy/deploy.yaml'
+    }
+  }
+//     node("jenkins-slave"){
+//         stage('build image') {
+//             steps {
+//                 echo "----------------------从git仓库拉取代码阶段------------------"
+//                 git branch: 'main', credentialsId: '5c26cc66-ec4d-40aa-a261-58f29df53b76', url: 'git@github.com:metrosir/test.git'
+//             }
+//         }
+//         stage('Docker Builder') {
+//             steps {
+//                 echo "----------------------生产docker镜像------------------"
+//                 sh '''
+//                 docker login -u t1 -p 'Oa123!@#' 192.144.178.98:443
+//                 docker build -t 192.144.178.98:443/my/nginx:latest -f project/Dockerfile .
+//                 docker push 192.144.178.98:443/my/nginx:latest
+//                 '''
+//             }
+//         }
+//         stage('Deploy to K8S'){
+//             steps {
+//                 echo "----------------------kubernetesDeploy------------------"
+//                 kubernetesDeploy configs: 'deploy/deploy.yaml'
+//                 kubeconfig(credentialsId: '819c6052-037c-4f44-ae98-f3c666eafab2', serverUrl: 'https://10.0.16.9:6443') {
+//                     // some block
+//                 }
+//             }
+//             steps {
+//                 echo "Testing..."
+//             }
+//         }
     }
 //     stages {
 }
