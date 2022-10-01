@@ -6,7 +6,7 @@
 //     }
 // }
 
-pipeline {
+{
   agent {
     kubernetes {
         yamlFile 'deploy/deploy.yaml'
