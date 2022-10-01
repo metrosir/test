@@ -1,3 +1,11 @@
+podTemplate {
+    node(POD_LABEL) {
+        stage('Run shell') {
+            sh 'echo hello world'
+        }
+    }
+}
+
 pipeline {
     agent any
     stages {
@@ -15,13 +23,6 @@ pipeline {
                 docker build -t 192.144.178.98:443/my/nginx:latest -f project/Dockerfile .
                 docker push 192.144.178.98:443/my/nginx:latest
                 '''
-            }
-        }
-    }
-    podTemplate {
-        node(POD_LABEL) {
-            stage('Run shell') {
-                sh 'echo hello world'
             }
         }
     }
