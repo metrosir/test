@@ -55,7 +55,6 @@ pipeline {
 //                 }
 //             }
 //     }
-}
 
 // 依次安装：docker-commons,docker-java-api,docker-build-step,docker-workflow(dockerpipline),rancher
 // [pipeline的编写] 1.https://blog.csdn.net/superman26/article/details/120697735
