@@ -12,6 +12,7 @@ pipeline {
         yamlFile 'deploy/deploy.yaml'
     }
   }
+}
 //     node("jenkins-slave"){
 //         stage('build image') {
 //             steps {
@@ -43,7 +44,7 @@ pipeline {
 //         }
 //     }
 //     stages {
-}
+// }
 
 
 
