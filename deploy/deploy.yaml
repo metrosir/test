@@ -1,45 +1,33 @@
-apiVersion: extensions/v1beta1 
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: blog-solo
-  namespace: blog
+  namespace: ns-test
+  name: nginx-deployment
+  labels:     # 自定义资源的标签
+    app: web2
+    appName: nginx-web2
+    version: stable
 spec:
-  replicas: 3
   selector:
     matchLabels:
-      project: blog
-      app: solo
+      app: web
+      appName: nginx-web
+  replicas: 2
   template:
     metadata:
       labels:
-        project: blog
-        app: solo
+        app: web
+        appName: nginx-web
     spec:
-      imagePullSecrets:
-      - name: registry-pull-secret
       containers:
-      - name: solo
-        image: 192.168.161.151/projectdemo/testprodemo:latest
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 80
-          name: web
-          protocol: TCP
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: blog-solo
-  namespace: blog
-  labels:
-    project: blog
-    app: solo
-spec:
-  selector:
-    project: blog
-    app: solo
-  ports:
-  - name: web
-    port: 80
-    targetPort: 80
-  type: NodePort
+        - name: nginx
+          image: 192.144.178.98:443/my/nginx:latest
+          resources:
+            limits:
+              cpu: 200m
+              memory: 200Mi
+            requests:
+              cpu: 50m
+              memory: 50Mi
+          ports:
+            - containerPort: 80

@@ -25,7 +25,16 @@ pipeline {
                 '''
             }
         }
-    }
+        stage('Deploy to K8S'){
+            steps {
+                echo "----------------------kubernetesDeploy------------------"
+                kubernetesDeploy configs: 'deploy/deploy.yaml'
+            }
+            steps {
+                echo "Testing..."
+            }
+        }
+}
 
 
 
@@ -44,5 +53,10 @@ pipeline {
 }
 
 // 依次安装：docker-commons,docker-java-api,docker-build-step,docker-workflow(dockerpipline),rancher
-// [pipeline的编写] https://blog.csdn.net/superman26/article/details/120697735
+// [pipeline的编写] 1.https://blog.csdn.net/superman26/article/details/120697735
+//                 2.https://www.cnblogs.com/shawhe/p/11313633.html
 // [docker 容器部署jenkins时在在容器中又要用到docker相关的操作该怎么处理]https://www.cnblogs.com/minimeta/p/16490444.html
+
+// [kubernetes-plugin] https://github.com/jenkinsci/kubernetes-plugin/blob/master/src/main/kubernetes/service-account.yml
+//                     https://github.com/jenkinsci/kubernetes-plugin/tree/master/examples
+//                     https://hub.docker.com/r/jenkins/inbound-agent
