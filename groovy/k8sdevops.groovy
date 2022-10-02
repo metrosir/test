@@ -19,18 +19,11 @@ pipeline {
                 '''
             }
         }
+        stage('Deploy to K8S'){
+            steps {
+                echo "----------------------kubernetesDeploy------------------"
+                kubernetesDeploy configs: 'deploy/deploy.yaml'
+            }
+        }
     }
 }
-
-// pipeline {
-//     agent { docker 'golang:1.18.3' }
-//     stages {
-//         stage('build') {
-//             steps {
-//                 sh 'go env'
-//             }
-//         }
-//     }
-// }
-
-// https://www.jenkins.io/zh/doc/pipeline/tour/running-multiple-steps/
