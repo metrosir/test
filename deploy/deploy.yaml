@@ -8,6 +8,7 @@ metadata:
     appName: nginx-web2
     version: {{APP_VERSION}}
 spec:
+  revisionHistoryLimit: 1 #可指定为该 Deployment 保留多少个旧的 ReplicaSet。
   selector:
     matchLabels:
       app: web
@@ -19,7 +20,6 @@ spec:
         app: web
         appName: nginx-web
     spec:
-      revisionHistoryLimit: 1 #可指定为该 Deployment 保留多少个旧的 ReplicaSet。
       containers:
         - name: nginx
           image: {{IMG_NAME}}
