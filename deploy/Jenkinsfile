@@ -1,3 +1,4 @@
+def map=[:]
 pipeline {
     agent any
     stages {
@@ -9,6 +10,11 @@ pipeline {
 //                 }
 //             }
 //         }
+        stage ('debug') {
+            steps {
+                echo $map
+            }
+        }
         stage ('build image') {
             steps {
                 echo "----------------------生产docker镜像------------------"
