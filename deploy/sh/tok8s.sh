@@ -13,7 +13,7 @@ echo "[tok8s.2] mkdir"
 ssh ${SSH_USER}@${SSH_IP} "mkdir -p ${UPLOAD_DIR}"
 
 echo "[tok8s.3]"
-scp -r ../deploy.yaml ${SSH_USER}@${SSH_IP}:${DEPLOY_FILE}
+scp -r deploy/deploy.yaml ${SSH_USER}@${SSH_IP}:${DEPLOY_FILE}
 
 echo "[tok8s.4]"
 ssh ${SSH_USER}@${SSH_IP} "kubectl apply -y ${DEPLOY_FILE}"
