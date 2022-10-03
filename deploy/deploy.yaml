@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: 192.144.178.98:443/my/nginx:{{IMG_NAME}}
+          image: {{IMG_NAME}}
           resources:
             limits:
               cpu: 200m
