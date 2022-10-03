@@ -1,5 +1,5 @@
 FROM nginx:alpine AS base
 
-RUN mkdir -p  /data && mkdir -p /data/app
-COPY ./app /data/app
-
+RUN mkdir -p  /data
+COPY . /data
+COPY devops/conf/nginx/default.conf /etc/nginx/conf.d/default.conf
