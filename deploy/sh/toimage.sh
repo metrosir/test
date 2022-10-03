@@ -3,7 +3,7 @@ set -eu
 
 IMG_REGISTRY="192.144.178.98:443"
 IMG_NAME="my/nginx"
-IMG_TAG="1.0.1"
+IMG_TAG="1.0.4"
 IMG_FULL_NAME="${IMG_REGISTRY}/${IMG_NAME}:${IMG_TAG}"
 
 echo "login registry!"
