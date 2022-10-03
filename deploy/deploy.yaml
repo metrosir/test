@@ -6,7 +6,7 @@ metadata:
   labels:     # 自定义资源的标签
     app: web2
     appName: nginx-web2
-    version: stable
+    version: {{APP_VERSION}}
 spec:
   selector:
     matchLabels:
@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: 192.144.178.98:443/my/nginx:latest
+          image: 192.144.178.98:443/my/nginx:{{IMG_NAME}}
           resources:
             limits:
               cpu: 200m
