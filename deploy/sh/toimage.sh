@@ -15,6 +15,6 @@ docker push ${IMG_FULL_NAME}
 echo "rmi image!"
 docekr rmi ${IMG_FULL_NAME}
 
-sed -i "s#{{IMG_NAME}}#${IMG_FULL_NAME}#g" ../deploy.yaml
-sed -i "s#{{APP_VERSION}}#${IMG_FULL_NAME}#g" ../deploy.yaml
+sed -i "s#{{IMG_NAME}}#${IMG_FULL_NAME}#g" deploy/deploy.yaml
+sed -i "s#{{APP_VERSION}}#${IMG_FULL_NAME}#g" deploy/deploy.yaml
 echo "toimges.sh ok~"
