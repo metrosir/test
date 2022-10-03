@@ -12,7 +12,9 @@ pipeline {
 //         }
         stage ('debug') {
             steps {
+                echo "echo map>>"
                 echo $map
+                echo "echo map<<"
             }
         }
         stage ('build image') {
