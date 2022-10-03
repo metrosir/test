@@ -12,13 +12,13 @@ pipeline {
         stage ('build image') {
             steps {
                 echo "----------------------生产docker镜像------------------"
-                sh label:'image building', script: '/bin/sh ./sh/toimage.sh'
+                sh label:'image building', script: '/bin/sh deploy/sh/toimage.sh'
             }
         }
         stage('deploy k8s') {
            steps {
                 echo "----------------------部署到k8s------------------"
-                sh label:'deploy image to k8s', script: '/bin/sh ./sh/tok8s.sh'
+                sh label:'deploy image to k8s', script: '/bin/sh deploy/sh/tok8s.sh'
            }
         }
     }
