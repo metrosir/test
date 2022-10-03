@@ -9,6 +9,13 @@ metadata:
     version: {{APP_VERSION}}
 spec:
   revisionHistoryLimit: 1 #可指定为该 Deployment 保留多少个旧的 ReplicaSet。
+  minReadySeconds: 5
+  strategy:
+    # indicate which strategy we want for rolling update
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
   selector:
     matchLabels:
       app: web
