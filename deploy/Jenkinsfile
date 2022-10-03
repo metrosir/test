@@ -13,7 +13,7 @@ pipeline {
         stage ('debug') {
             steps {
                 echo "echo map>>"
-                echo "${GIT_BRANCH}" + GIT_BRANCH
+                echo "${GIT_BRANCH}:" + GIT_COMMIT
                 echo "echo map<<"
             }
         }
