@@ -9,7 +9,7 @@ IMG_FULL_NAME="${IMG_REGISTRY}/${IMG_NAME}:${IMG_TAG}"
 echo "login registry!"
 docker login -u t1 -p 'Oa123!@#' 192.144.178.98:443
 echo "build image!"
-docker build -t ${IMG_FULL_NAME} -f ../../project/Dockerfile .
+docker build -t ${IMG_FULL_NAME} -f project/Dockerfile .
 echo "push image!"
 docker push ${IMG_FULL_NAME}
 echo "rmi image!"
