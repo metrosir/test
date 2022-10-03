@@ -13,7 +13,7 @@ docker build -t ${IMG_FULL_NAME} -f project/Dockerfile .
 echo "push image!"
 docker push ${IMG_FULL_NAME}
 echo "rmi image!"
-docekr rmi ${IMG_FULL_NAME}
+docekr rmi ${IMG_FULL_NAME} || true
 
 sed -i "s#{{IMG_NAME}}#${IMG_FULL_NAME}#g" deploy/deploy.yaml
 sed -i "s#{{APP_VERSION}}#${IMG_FULL_NAME}#g" deploy/deploy.yaml
