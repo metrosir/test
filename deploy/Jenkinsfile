@@ -15,6 +15,7 @@ pipeline {
                 echo "echo map>>"
                 echo "${GIT_BRANCH}:" + GIT_COMMIT
                 echo "${GIT_BRANCH}:" + BUILD_TAG
+                echo "${GIT_BRANCH}:" + BUILD_PROJECT_NAME
                 echo "echo map<<"
             }
         }
