@@ -13,3 +13,4 @@ docekr rmi ${IMG_FULL_NAME}
 
 sed -i "s#{{IMG_NAME}}#${IMG_FULL_NAME}#g" ../deploy.yaml
 sed -i "s#{{APP_VERSION}}#${IMG_FULL_NAME}#g" ../deploy.yaml
+echo "toimges.sh ok~"
